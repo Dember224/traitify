@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script src="https://cdn.traitify.com/js/v2/traitify.js"></script>
+    <script>
+      
+      fetch("http://localhost:3000/").then(response =>{
+        return response.json()
+      }).then(data => {
+        Traitify.setPublicKey(data.public_key);
+        console.log(data)
+        const assessment = Traitify.ui.component();
+        assessment.assessmentID(data.id);
+        assessment.target("#assess");
+        assessment.render();
+      })
+
+    </script>
+  </head>
+  <body>
+    <div id="assess">
+    </div>
+  </body>
+</html>
